@@ -66,7 +66,7 @@ nodeType* build_Forward(ifstream& fin)
                 }
             if (newNode->someValue == 'D') 
             {
-                  last->link->link;
+                  last->link = last->link->link;
                   delete newNode;
 
               cout << " HERE : " << '\n';                       
