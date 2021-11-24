@@ -9,14 +9,13 @@ using namespace std;
 
   struct nodeType
 {
-  
- 
   char someValue;
   double someAmount;
   nodeType* link;
 };
 nodeType* build_Forward(ifstream&);
 void file_Open(ifstream& fin);
+nodeType* search(nodeType*);
 
 int main()
 {
@@ -26,14 +25,37 @@ int main()
   //file_Open(fin);
   node = build_Forward(fin);
   nextNode = node;
- 
   while (nextNode != NULL ) {
    cout << nextNode->someValue << " " << nextNode->someAmount << '\n';
     nextNode = nextNode->link;
   }
+  node= search(node);
+  nextNode = node;
+  while (nextNode != NULL) {
+    cout << nextNode->someValue << " " << nextNode->someAmount << '\n';
+    nextNode = nextNode->link;
+  }
   return 0;
 
+ 
+
 }
+nodeType* search(nodeType* headNode)
+{
+              nodeType *p;
+  p = headNode;
+           // if (headNode == NULL)
+             // cout << "empty";
+            
+              while (p != NULL) {
+    if (p->someValue == 'S')
+      cout << "S was found the amount is: " << p->someAmount << '\n';
+    p = p->link;
+              }
+            
+          return p;
+}
+        
 
 nodeType* build_Forward(ifstream& fin)
 {
@@ -60,7 +82,6 @@ nodeType* build_Forward(ifstream& fin)
                      tempNode->link = newNode; 
                      tempNode = newNode;
                 }
-         //   newNode = new nodeType;
     
            /* if (tempNode->someValue == 'D') 
             {
