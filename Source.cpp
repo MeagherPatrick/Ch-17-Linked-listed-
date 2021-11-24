@@ -49,7 +49,7 @@ nodeType* search(nodeType* headNode)
             
               while (p != NULL) {
     if (p->someValue == 'S')
-      cout << "S was found the amount is: " << p->someAmount << '\n';
+      cout << "S found, amount is: " << p->someAmount << '\n';
     p = p->link;
               }
             
