@@ -148,6 +148,7 @@
   <ItemGroup>
     <Text Include="..\..\..\Downloads\Chapter 17 In-Class Lab.txt" />
     <Text Include="input.txt" />
+    <Text Include="Text.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

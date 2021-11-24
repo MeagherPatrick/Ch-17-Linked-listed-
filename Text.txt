@@ -1,0 +1,28 @@
+//struct node
+//{
+//  int data;
+//  node* next;
+//};
+//int main()
+//{
+//  node* newNode;
+//  node* tempNode;
+//  node* headNode;
+//  newNode = new node;
+//  newNode->data = 1;
+//  tempNode = newNode;
+//  headNode = newNode;
+//  newNode = new node;
+//  newNode->data = 2;
+//  tempNode->next = newNode;
+//  tempNode = tempNode->next;
+//  newNode = new node;
+//  newNode->data = 3;
+//  tempNode->next = newNode;
+//  tempNode = tempNode->next;
+//  newNode = new node;
+//  newNode->data = 4;
+//  tempNode->next = newNode;
+//  newNode->next = NULL;
+//
+//}

@@ -5,9 +5,9 @@
 #include <fstream>
 #include <cstdio>
 
-
 using namespace std;
-struct nodeType
+
+  struct nodeType
 {
   
  
@@ -25,8 +25,8 @@ int main()
   ifstream fin("input.txt");
   //file_Open(fin);
   node = build_Forward(fin);
-
- nextNode = node;
+  nextNode = node;
+ 
   while (nextNode != NULL ) {
    cout << nextNode->someValue << " " << nextNode->someAmount << '\n';
     nextNode = nextNode->link;
@@ -38,50 +38,48 @@ int main()
 nodeType* build_Forward(ifstream& fin)
 {
 
-  nodeType *first, *newNode, *last;
-  first = NULL;
-  last = NULL;
+  nodeType *headNode, *newNode, *tempNode;
+  headNode = NULL;
+  tempNode = NULL;
+  newNode = NULL;
 
-
-  string s;
   while (fin.peek() != EOF)
   {
-   
       newNode = new nodeType;
-
         fin >> newNode->someValue;
         fin >> newNode->someAmount;
-       
-        newNode->link = NULL;
-
-            if (first == NULL) 
+        newNode->link = NULL;      
+            if (headNode == NULL) 
             {
-                 first = newNode;
-                 last = newNode;
+                 headNode = newNode;
+                 tempNode = newNode;
+                 
             }   
                 else 
                 {
-                     last->link = newNode;
-                     last = newNode;
+                     tempNode->link = newNode; 
+                     tempNode = newNode;
                 }
-            if (newNode->someValue == 'D') 
+         //   newNode = new nodeType;
+    
+           /* if (tempNode->someValue == 'D') 
             {
-                  last->link = last->link->link;
-                  delete newNode;
+                  
+                      cout << " D was found but was it deleted? : " << '\n';                       
+            } */
 
-              cout << " HERE : " << '\n';                       
-            } 
-                else if (newNode->someValue == 'S')
+           /*       
+             if (newnode->somevalue == 's')
                 {
-                  //cout << newNode->someAmount << " "<<newNode->someValue << '\n';
-                  cout << "THIS IS AN S VALUE:" << '\n';            
+                  cout << newnode->someamount << " "<<newnode->somevalue << '\n';
+                  cout << "this is an s value:" << '\n';            
                 }
-   
+   */
     }
-  //search(first, 'S')? 
-
-    return first;
+    return headNode;
 }
+  
+
 void file_Open(ifstream& fin)
 {
   string infile_Name;
@@ -101,10 +99,38 @@ void file_Open(ifstream& fin)
 
   // newNode->link = NULL;
 
-  // if (first == NULL) {
-  //  first = newNode;
+  // if (tempNode == NULL) {
+  //  tempNode = newNode;
   //  last = newNode;
   //} else {
   //  last->link = newNode;
   //  last = newNode;
   //}
+//struct node
+//{
+//  int data;
+//  node* next;
+//};
+//int main()
+//{
+//  node* newNode;
+//  node* tempNode;
+//  node* headNode;
+//  newNode = new node;
+//  newNode->data = 1;
+//  tempNode = newNode;
+//  tempNode = newNode;
+//  newNode = new node;
+//  newNode->data = 1;
+//  tempNode->next = newNode;
+//  tempNode = tempNode->next;
+//  newNode = new node;
+//  newNode->data = 3;
+//  tempNode->next = newNode;
+//  tempNode = tempNode->next;
+//  newNode = new node;
+//  newNode->data = 4;
+//  tempNode->next = newNode;
+//  newNode->next = NULL;
+//
+//}
