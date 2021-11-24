@@ -3,17 +3,19 @@
 #include <sstream>
 #include <string>
 #include <fstream>
+#include <cstdio>
+
 
 using namespace std;
 struct nodeType
 {
-  int count;
- int info;
-  string someValue;
+  
+ 
+  char someValue;
   double someAmount;
   nodeType* link;
 };
-nodeType* build_Backward(ifstream&);
+nodeType* build_Forward(ifstream&);
 void file_Open(ifstream& fin);
 
 int main()
@@ -22,65 +24,63 @@ int main()
   nodeType* node, *nextNode;
   ifstream fin("input.txt");
   //file_Open(fin);
- node = build_Backward(fin);
-  // output linked listed
+  node = build_Forward(fin);
+
  nextNode = node;
- while (nextNode != NULL)
+  while (nextNode != NULL ) {
    cout << nextNode->someValue << " " << nextNode->someAmount << '\n';
+    nextNode = nextNode->link;
+  }
   return 0;
 
 }
 
-nodeType* build_Backward(ifstream& fin)
+nodeType* build_Forward(ifstream& fin)
 {
-  int num;
-  int howMany = 0;
-  string eof;
+
   nodeType *first, *newNode, *last;
   first = NULL;
   last = NULL;
-  num = 0;
-  newNode = new nodeType;
-  newNode->info = num;
-  newNode->count = ++howMany;
-  fin >> newNode->someValue;
-  fin >> newNode->someAmount;
-  newNode->link = NULL;
-  first = newNode;
-  if (first == NULL) {
-    first = newNode;
-    last = newNode;
-  } else {
-    last->link = newNode;
-    last = newNode;
-  }
-  cout << "Enter a list of integer ending with -999." << endl;
-  num++;
-  //while (!fin.eof() )
-  //  {
-  while (!fin.eof())
-      {
 
-        newNode = new nodeType;
-        newNode->info = num;
-        newNode->count = ++howMany;
+
+  string s;
+  while (fin.peek() != EOF)
+  {
+   
+      newNode = new nodeType;
+
         fin >> newNode->someValue;
         fin >> newNode->someAmount;
+       
         newNode->link = NULL;
-        first = newNode;
-        if (first == NULL) {
-          first = newNode;
-          last = newNode;
-        } else {
-           last->link = newNode;
-          last = newNode;
-        }
-        cout << "Enter a list of integer ending with -999." << endl;
-        num++;
-      }
-    //}
 
-  return first;
+            if (first == NULL) 
+            {
+                 first = newNode;
+                 last = newNode;
+            }   
+                else 
+                {
+                     last->link = newNode;
+                     last = newNode;
+                }
+            if (newNode->someValue == 'D') 
+            {
+                  last->link->link;
+                  delete newNode;
+
+              cout << " HERE : " << '\n';                       
+            } 
+                else if (newNode->someValue == 'S')
+                {
+                  //cout << newNode->someAmount << " "<<newNode->someValue << '\n';
+                  cout << "THIS IS AN S VALUE:" << '\n';            
+                }
+   
+    }
+  //search(first, 'S')? 
+
+    return first;
 }
 void file_Open(ifstream& fin)
 {
@@ -94,3 +94,17 @@ void file_Open(ifstream& fin)
   if (!fin.is_open()) 
 	  cout << "error could not open file. \n program will now shut down. \n"; 
 }
+  // newNode = new nodeType;
+  //
+  // fin >> newNode->someValue;
+  // fin >> newNode->someAmount;
+
+  // newNode->link = NULL;
+
+  // if (first == NULL) {
+  //  first = newNode;
+  //  last = newNode;
+  //} else {
+  //  last->link = newNode;
+  //  last = newNode;
+  //}

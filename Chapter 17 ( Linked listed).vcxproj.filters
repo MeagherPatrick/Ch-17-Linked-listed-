@@ -28,7 +28,7 @@
     <Text Include="..\..\..\Downloads\Chapter 17 In-Class Lab.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="..\..\..\Downloads\input.txt">
+    <Text Include="input.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
