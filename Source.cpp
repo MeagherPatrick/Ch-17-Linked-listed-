@@ -16,6 +16,7 @@ using namespace std;
 nodeType* build_Forward(ifstream&);
 void file_Open(ifstream& fin);
 nodeType* search(nodeType*);
+nodeType* delete_NodeType(nodeType*);
 
 int main()
 {
@@ -29,17 +30,27 @@ int main()
    cout << nextNode->someValue << " " << nextNode->someAmount << '\n';
     nextNode = nextNode->link;
   }
-  node= search(node);
   nextNode = node;
+
+  while (nextNode != NULL) {
+  nextNode->link = delete_NodeType(nextNode);
+    nextNode = nextNode->link;
+ }
+    //nextNode = node;
+      while (nextNode != NULL) {
+        cout << nextNode->someValue << " " << nextNode->someAmount << '\n';
+        nextNode = nextNode->link;
+      }
+      
+  nextNode = node;
+  node= search(node);
   while (nextNode != NULL) {
     cout << nextNode->someValue << " " << nextNode->someAmount << '\n';
     nextNode = nextNode->link;
-  }
+      }
+  
   return 0;
-
- 
-
-}
+  }
 nodeType* search(nodeType* headNode)
 {
               nodeType *p;
@@ -53,7 +64,38 @@ nodeType* search(nodeType* headNode)
     p = p->link;
               }
             
-          return p;
+          return headNode;
+}
+
+nodeType* delete_NodeType(nodeType*headNode)
+{ 
+  nodeType *p;
+  p = headNode;
+ // q = headNode;
+  // if (headNode == NULL)
+  // cout << "empty";
+     
+ //while (p!= NULL) {
+ 
+    nodeType *q;
+    
+     //cout << p << '\n';
+    if (p->someValue == 'D') {
+      cout << "D found, amount is: " << p->someAmount << '\n';
+      q = p->link;
+   /*   cout << q << '\n';
+      cout << p->link << '\n';
+      cout << p << '\n';*/
+
+      p->link = q->link;
+      delete q;
+     /* cout << q << '\n';
+      cout << p->link << '\n';
+      cout << p << '\n';
+    } */
+      p = p->link;
+  }
+  return p;
 }
         
 
