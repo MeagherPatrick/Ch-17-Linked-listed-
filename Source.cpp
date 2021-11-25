@@ -27,25 +27,28 @@ int main()
   node = build_Forward(fin);
   nextNode = node;
   while (nextNode != NULL ) {
-   cout << nextNode->someValue << " " << nextNode->someAmount << '\n';
+    cout << nextNode->someValue << " " << nextNode->someAmount
+         << " at: " << nextNode->link << '\n';
     nextNode = nextNode->link;
   }
   nextNode = node;
 
-  while (nextNode != NULL) {
-  nextNode->link = delete_NodeType(nextNode);
+ // while (nextNode != NULL) {
+  nextNode = delete_NodeType(nextNode);
     nextNode = nextNode->link;
- }
+ //}
     //nextNode = node;
       while (nextNode != NULL) {
-        cout << nextNode->someValue << " " << nextNode->someAmount << '\n';
+   cout << nextNode->someValue << " " << nextNode->someAmount
+        << " at: " << nextNode->link << '\n';
         nextNode = nextNode->link;
       }
       
   nextNode = node;
   node= search(node);
   while (nextNode != NULL) {
-    cout << nextNode->someValue << " " << nextNode->someAmount << '\n';
+    cout << nextNode->someValue << " " << nextNode->someAmount
+         << " at: " << nextNode->link << '\n';
     nextNode = nextNode->link;
       }
   
@@ -54,6 +57,7 @@ int main()
 nodeType* search(nodeType* headNode)
 {
               nodeType *p;
+  p = NULL;
   p = headNode;
            // if (headNode == NULL)
              // cout << "empty";
@@ -69,33 +73,40 @@ nodeType* search(nodeType* headNode)
 
 nodeType* delete_NodeType(nodeType*headNode)
 { 
-  nodeType *p;
+  nodeType *p, *q;
+  p = NULL;
+  q = NULL;
   p = headNode;
+  q = headNode;
+  
  // q = headNode;
   // if (headNode == NULL)
   // cout << "empty";
      
  //while (p!= NULL) {
  
-    nodeType *q;
+   
     
      //cout << p << '\n';
-    if (p->someValue == 'D') {
-      cout << "D found, amount is: " << p->someAmount << '\n';
+    if (p->someValue == 'D') 
+    {
+      cout << "D found, amount is: " << p->someAmount << " at: "<< p->link << '\n';
       q = p->link;
-   /*   cout << q << '\n';
-      cout << p->link << '\n';
-      cout << p << '\n';*/
+      cout << q->link << '\n';
+      cout << p->link << '\n';   
 
       p->link = q->link;
+      cout << "AFTER:" << '\n';
+      cout << q->link << '\n';
+      cout << p->link << '\n';
       delete q;
      /* cout << q << '\n';
       cout << p->link << '\n';
       cout << p << '\n';
     } */
-      p = p->link;
-  }
-  return p;
+      //p = p->link;
+    }
+  return headNode;
 }
         
 
@@ -125,19 +136,6 @@ nodeType* build_Forward(ifstream& fin)
                      tempNode = newNode;
                 }
     
-           /* if (tempNode->someValue == 'D') 
-            {
-                  
-                      cout << " D was found but was it deleted? : " << '\n';                       
-            } */
-
-           /*       
-             if (newnode->somevalue == 's')
-                {
-                  cout << newnode->someamount << " "<<newnode->somevalue << '\n';
-                  cout << "this is an s value:" << '\n';            
-                }
-   */
     }
     return headNode;
 }
@@ -197,3 +195,16 @@ void file_Open(ifstream& fin)
 //  newNode->next = NULL;
 //
 //}
+           /* if (tempNode->someValue == 'D') 
+            {
+                  
+                      cout << " D was found but was it deleted? : " << '\n';                       
+            } */
+
+           /*       
+             if (newnode->somevalue == 's')
+                {
+                  cout << newnode->someamount << " "<<newnode->somevalue << '\n';
+                  cout << "this is an s value:" << '\n';            
+                }
+   */
